@@ -41,7 +41,7 @@ export async function fetchWeather() {
       }
     }
     //append the csv file when we fetch the data from the api
-    const logEntry = `${nowUTC}, ${city}, ${data.main.temp}, ${data.weather[0].description}\n`;
+    const logEntry = `${nowUTC},${city},${data.main.temp},${data.weather[0].description}\n`;
     fs.appendFileSync(LOG_FILE, logEntry);
     console.log(`Weather data updated for ${city} at ${nowUTC}`);
   } catch (err) {

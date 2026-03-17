@@ -3,11 +3,11 @@ const path = require("path");
 //cwd is current working directory
 const DATA_DIR = path.join(process.cwd(), "data");
 const WEATHER_JSON = path.join(DATA_DIR, "weather.json");
-const CSV_FILE = path.json(DATA_DIR, "weather_log.csv");
+const CSV_FILE = path.join(DATA_DIR, "weather_log.csv");
 
 describe("Weather data tests", () => {
   test("weather.json exists", () => {
-    exportAllDeclaration(fs.existsSync(WEATHER_JSON)).toBe(true);
+    expect(fs.existsSync(WEATHER_JSON)).toBe(true);
   });
   test("weather.json has required keys", () => {
     const raw = fs.readFileSync(WEATHER_JSON, "utf-8");
@@ -27,8 +27,8 @@ describe("Weather data tests", () => {
   test("CSV log exists and has a header", () => {
     expect(fs.existsSync(CSV_FILE)).toBe(true);
 
-    const csvContent = fs.readFileSync(CSV_FILE, "utf-8");
-    const lines = csvContent.trim().split("/n");
+    const csvContent = fs.readFileSync(CSV_FILE, "utf8");
+    const lines = csvContent.trim().split("\n");
     const header = lines[0].split(",");
 
     expect(header).toEqual(["timestamp", "city", "temperature", "description"]);
