@@ -23,7 +23,7 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os}}-node-${{ hashFiles('package-lock.json')}}
       - name: Install Dependencies
-        run: npm CI
+        run: npm ci
       - name: Fetch Latest Weather
         env:
           WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
